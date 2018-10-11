@@ -32,12 +32,14 @@ dual_port_ram #(
   .REGISTERED_OUTPUT ( REGISTERED_OUTPUT ),
   .INIT_FILE         ( INIT_FILE         )
 ) DUT (
+  .rst_i             ( 1'b0              ),
   .wr_clk_i          ( clk               ),
   .wr_addr_i         ( 5'd0              ),
   .wr_data_i         ( 8'd0              ),
   .wr_i              ( 1'b0              ),
   .rd_clk_i          ( clk               ),
   .rd_addr_i         ( rd_addr           ),
+  .output_reg_en_i   ( 1'b1              ),
   .rd_data_o         ( rd_data           ),
   .rd_i              ( 1'b1              )
 );

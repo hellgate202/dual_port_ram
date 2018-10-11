@@ -4,12 +4,14 @@ module dual_port_ram #(
   parameter REGISTERED_OUTPUT = 0,
   parameter INIT_FILE         = ""
 )(
+  input                   rst_i,
   input                   wr_clk_i,
   input [ADDR_WIDTH-1:0]  wr_addr_i,
   input [DATA_WIDTH-1:0]  wr_data_i,
   input                   wr_i,
   input                   rd_clk_i,
   input  [ADDR_WIDTH-1:0] rd_addr_i,
+  input                   output_reg_en_i,
   output [DATA_WIDTH-1:0] rd_data_o,
   input                   rd_i
 );
@@ -31,7 +33,11 @@ always_ff @( posedge rd_clk_i )
     rd_data <= ram[rd_addr_i];
 
 always_ff @( posedge rd_clk_i )
-  rd_data_reg <= rd_data;
+  if( rst_i )
+    rd_data_reg <= '0;
+  else
+    if( output_reg_en_i )
+      rd_data_reg <= rd_data;
 
 assign rd_data_o = ( REGISTERED_OUTPUT ) ? rd_data_reg : rd_data;
 
