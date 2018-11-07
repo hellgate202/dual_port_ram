@@ -1,7 +1,7 @@
 module dual_port_ram #(
   parameter DATA_WIDTH        = 8,
   parameter ADDR_WIDTH        = 5,
-  parameter REGISTERED_OUTPUT = 0,
+  parameter REGISTERED_OUTPUT = "FALSE",
   parameter INIT_FILE         = ""
 )(
   input                   rst_i,
@@ -39,6 +39,6 @@ always_ff @( posedge rd_clk_i )
     if( output_reg_en_i )
       rd_data_reg <= rd_data;
 
-assign rd_data_o = ( REGISTERED_OUTPUT ) ? rd_data_reg : rd_data;
+assign rd_data_o = ( REGISTERED_OUTPUT == "TRUE" ) ? rd_data_reg : rd_data;
 
 endmodule
