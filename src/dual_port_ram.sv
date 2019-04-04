@@ -1,7 +1,7 @@
 module dual_port_ram #(
   parameter int    DATA_WIDTH        = 8,
   parameter int    ADDR_WIDTH        = 5,
-  parameter string INIT_FILE         = ""
+  parameter        INIT_FILE         = ""
 )(
   input                       rst_i,
   input                       wr_clk_i,
