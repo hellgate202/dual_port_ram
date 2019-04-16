@@ -3,7 +3,6 @@ module dual_port_ram #(
   parameter int    ADDR_WIDTH        = 5,
   parameter        INIT_FILE         = ""
 )(
-  input                       rst_i,
   input                       wr_clk_i,
   input [ADDR_WIDTH - 1 : 0]  wr_addr_i,
   input [DATA_WIDTH - 1 : 0]  wr_data_i,
